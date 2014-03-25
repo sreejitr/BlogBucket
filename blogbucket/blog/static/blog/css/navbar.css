@@ -1,0 +1,87 @@
+/* Customized Navbar */
+
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.bg {
+	background-image: url('http://miriadna.com/desctopwalls/images/max/Landscape-with-calm-river.jpg');
+	position: fixed;
+	width: 100%;
+	height: 900px;
+	top: 0;
+	left: 0;
+	z-index: -1; 
+}
+
+.jumbotron {	
+  text-align: center;
+  color: white;
+  text-shadow: #444 0 1px 1px;
+  background: transparent;
+  height: 300px;
+}
+
+#blog-container {
+  margin-top: 120px;
+  min-height: 320px;
+  /*max-width: 500px;*/
+  border-style: solid;
+  border-color: #F0F0F0;
+  box-shadow: 9px 9px 20px #787878;
+  border-width: 3px;
+  background-color: #E8F1D4;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+}
+
+.hero {
+  min-height: 135px;
+  /*max-width: 500px;*/
+  /*border-style: solid;
+  border-color: #F0F0F0;
+  box-shadow: 9px 9px 20px #787878;
+  border-width: 3px;
+  background-color: #FFFFFF;*/
+  color: #FFFFFF;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #F8F8F8;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
+}
+
+body {
+   /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;*/
+   font-family: Papyrus, fantasy;
+}
+

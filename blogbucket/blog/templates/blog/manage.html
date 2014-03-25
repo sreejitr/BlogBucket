@@ -1,0 +1,67 @@
+{% extends "blog/base_generic.html" %}
+{% load staticfiles %}
+{% block title %}BlogBucket{% endblock %}
+{% block heading %}
+<div align="center">
+<h2>{{profile}}'s Blog</h2>
+</div>
+{% endblock %}
+
+{% block contents %}
+<div align="center">
+    {% if profile.address %}
+     Address: {{profile.address}} <br>
+    {% endif %} 
+    {% if profile.phone %}
+     Phone: {{profile.phone}} <br>
+    {% endif %} 
+    {% if profile.interests %}
+     Interests: {{profile.interests}} <br>
+    {% endif %} 
+    <br>
+      {% if profile.address or profile.phone or profile.interests %}
+        <a href="/blog/edit-profile/{{profile.id}}"><button>Edit Personal Information</button></a>
+      {% else %}
+        <a href="/blog/edit-profile/{{profile.id}}"><button>Add Personal Information</button></a>
+      {% endif %}
+      <hr>
+      <br>
+
+<form enctype="multipart/form-data" action="{% url 'create' %}" method="post">
+  <table>
+    {% for field in form.visible_fields %}
+    <tr>
+      <td>{{field.label_tag}}:&nbsp &nbsp</td>
+      <td>{{field}}</td>
+      <td style="color: red;">{{field.errors}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <input type="submit" value="Post" class="button btn-large btn-success">
+  {% csrf_token %}
+</form>
+<br>
+<hr>
+
+      {% for post in posts %}
+      <div class="row"> 
+              
+              {% if post.picture %}
+                <img src="{{ post.picture.url }}" style="width:200px;height:200px" class="img-circle">
+              {% endif %}  
+              <div align="center" style="word-wrap: break-word; padding-left: 40px; padding-right: 40px">
+                <br><br>
+                  <p>{{post.text}}</p>    
+                  <ul class="list-inline" style="font-size: 80%;"><li>Created on: {{post.created_date}}</li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>
+                </div><br><br>
+                <div align="center">
+                    <a href="{% url 'delete' post.id %}"> <button>Delete</button></a> 
+                    </p> 
+                </div>
+              <br>
+            </div>
+        
+          <hr>
+          {% endfor %}
+  </div>        
+{% endblock %}

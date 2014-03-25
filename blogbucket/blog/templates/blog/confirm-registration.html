@@ -1,0 +1,16 @@
+{% extends "blog/base_generic.html" %}
+{% load staticfiles %}
+{% block title %}My Blog{% endblock %}
+
+{% block heading %}<h3>Verification of Account</h3><br>{% endblock %}
+
+{% block contents %}
+<p>
+	{% if active_user != True %}
+	<h4> Congratulations! You have successfully verified your email address! 
+		 Click <a href="{% url 'login' %}">here</a> to log into your account. Happy Blogging!!</h4>
+	{% else %}
+	<h4> Your email account has already been verified. Click <a href="{% url 'login' %}">here</a> to log into your account. Happy Blogging!!</h4>
+	{% endif %}	 
+</p>
+{% endblock %}	

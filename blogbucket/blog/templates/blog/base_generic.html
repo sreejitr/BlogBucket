@@ -1,0 +1,106 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}BlogBucket{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta name="description" content="">
+    	<meta name="author" content="">
+
+    	<!-- Styles -->
+    	<link href="{% static 'blog/css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'blog/css/bootstrap.css' %}" rel="stylesheet">
+    	<style type="text/css">
+     		body {
+        		padding-top: 60px;
+        		padding-bottom: 40px;
+      		}
+    	</style>
+    	<link href="{% static 'blog/css/navbar.css' %}" rel="stylesheet">
+      <link href="{% static 'blog/css/sidebar.css' %}" rel="stylesheet">
+      <script src="{% static 'blog/js/blog.js' %}" type="text/javascript"></script>
+	</head>
+	<body>
+	<div class="navbar-wrapper">
+	<div class="container">	
+		<div class="navbar navbar-inverse navbar-static-top">
+      		<div class="container">
+        		<div class="navbar-header">
+        			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                		<span class="sr-only">Toggle navigation</span>
+                		<span class="icon-bar"></span>
+                		<span class="icon-bar"></span>
+                		<span class="icon-bar"></span>
+              		</button>
+          			<a class="navbar-brand" href="{% url 'home' %}">BlogBucket Home</a>
+          		</div>
+          		<div class="navbar-collapse collapse">	
+            		<ul class="nav navbar-nav">
+                    <li><a href="{% url 'manage' %}">Manage my Posts</a></li>
+              			<li><a href="{% url 'aboutus' %}">About Us</a></li>
+              			<li><a href="{% url 'contactus' %}">Contact Us</a></li>
+                    {% if logged_in != True %}
+                      <li><a href="{% url 'login' %}">Login</a></li>
+                      <li><a href="{% url 'register' %}">Register</a></li>
+                    {% else %}
+                      <li><a href="{% url 'logout' %}">Logout</a></li>  
+                    {% endif %}
+            		</ul>
+          		</div>
+       		</div>
+   		</div>
+   	 </div>
+   	</div>
+   	<div class="bg">	
+   	<div class="hero" align= "right">
+      <div class="col-md-12" >
+      <br><br>   
+      <div align="center">
+   	  <h1 style="font-size: 50pt;">Welcome to BlogBucket</h1>
+      </div>
+    </div>
+   	</div>
+   	   	
+   </div>
+   <br>
+    <div class="row">
+
+      <!-- Sidebar -->
+      <div class="col col-md-2" id="blog-container" style="margin-left: 100px;">
+         <p>
+            <div id="list"><h3>Users List</h3></div>
+            <ol id="user-list">
+              {% for u in users %}
+              {% if logged_in == True %}
+                <li><a href="/blog/follow/{{u.id}}">{{u.first_name}} {{u.last_name}}</a></li>
+              {% else %}
+                <li><a href="/blog/index/{{u.id}}">{{u.first_name}} {{u.last_name}}</a></li>
+              {% endif %}  
+              {% endfor %}
+            </ol>
+         </p>   
+      </div>
+      
+   	  <div class="col col-md-8" id="blog-container" style="margin-left: 20px;">
+		    {% block errors %}
+		    {% for error in form.non_field_errors %}
+		    <p style="color: red">
+			   {{ error }}
+		    </p>
+		    {% endfor %}
+		    {% endblock %}
+		    <p>
+			   {% block heading %}{% endblock %}
+		    </p>
+
+		    {% block contents %}{% endblock %}
+      </div>	
+  </div>
+
+
+  <script type="text/javascript" src="{% static 'blog/js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+		
+	</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "blog/base_generic.html" %}
+{% load staticfiles %}
+{% block title %}BlogBucket{% endblock %}
+{% block heading %}
+<div align="center">
+<h2>{{profile}}'s Blog</h2>
+</div>
+{% endblock %}
+
+{% block contents %}
+<div align="center">
+    {% if profile == None %}
+      <p>No information is available for this user.</p>
+    {% else %}  
+      {% if profile.address %}
+        Address: {{profile.address}} <br>
+      {% endif %} 
+      {% if profile.phone %}
+        Phone: {{profile.phone}} <br>
+      {% endif %} 
+      {% if profile.interests %}
+        Interests: {{profile.interests}} <br>
+      {% endif %}   
+    {% endif %}
+    <br>
+    <hr><br>
+      {% if posts %}
+      {% for post in posts %}
+      <div class="row"> 
+              
+              {% if post.picture %}
+                <img src="{{ post.picture.url }}" style="width:200px;height:200px" class="img-circle">
+              {% endif %}  
+              <div align="center" style="word-wrap: break-word; padding-left: 40px; padding-right: 40px">
+                <br><br>
+                  <p>{{post.text}}</p>    
+                  <ul class="list-inline" style="font-size: 80%;"><li>Created on: {{post.created_date}}</li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>
+                </div><br>
+              <br>
+            </div>
+        
+          <hr>
+          {% endfor %}
+      {% else %}  
+        <p>No posts available for this user.</p>  
+      {% endif %}
+  </div>        
+{% endblock %}

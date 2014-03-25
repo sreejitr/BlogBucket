@@ -1,0 +1,11 @@
+{% extends "blog/base_generic.html" %}
+{% load staticfiles %}
+{% block title %}My Blog{% endblock %}
+
+{% block heading %}<h3>Verification of Account</h3><br>{% endblock %}
+
+{% block contents %}
+<p>
+	<h4> A confirmation mail has been sent to {{email}}. Please click on the link provided in the email to verify your email address and complete the registration process</h4>
+</p>
+{% endblock %}	

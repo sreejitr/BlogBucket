@@ -1,0 +1,37 @@
+{% extends "blog/base_generic.html" %}
+{% load staticfiles %}
+{% block title %}BlogBucket{% endblock %}
+{% block heading %}
+<div align="center">
+<h2>BlogBucket Home</h2>
+<p>
+  <h4>This is the place where you share your ideas and thoughts with others! Create <a href="{% url 'manage' %}">your own Blog</a> now!</h4>
+</p><br><hr><br>
+</div>
+{% endblock %}
+
+{% block contents %}
+{% if not follows and logged_in == True %}
+   <div align="center">"Not following any users"</div>
+{% endif %}
+<div align="center">
+    {% if posts %}  
+      {% for post in posts %}
+      <div class="row"> 
+              <h4>Post by: <a href="/blog/index/{{post.user.id}}">{{post.user}}</a></h4><br>
+              {% if post.picture %}
+                <img src="{{ post.picture.url }}" style="width:200px;height:200px" class="img-circle">
+              {% endif %}  
+              <div align="center" style="word-wrap: break-word; padding-left: 40px; padding-right: 40px">
+                <br><br>
+                  <p>{{post.text}}</p>    
+                  <ul class="list-inline" style="font-size: 80%;"><li>Created on: {{post.created_date}}</li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>
+                </div><br><br>
+                
+            </div>
+        
+          <hr>
+          {% endfor %}
+    {% endif %}
+  </div>        
+{% endblock %}

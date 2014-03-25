@@ -1,0 +1,7 @@
+<items>{% for user in users %}
+	<item>
+		<id>{{user.id}}</id>
+		<text>{{user.first_name}} {{user.last_name}}</text>
+	</item>{% endfor %}
+</items>
+

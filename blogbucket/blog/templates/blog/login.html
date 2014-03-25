@@ -1,0 +1,45 @@
+{% extends "blog/base_generic.html" %}
+{% load staticfiles %}
+{% block title %}Login{% endblock %}
+
+{% block heading %}
+<div align="center">
+<h3>Login to see your blog</h3>
+</div>
+<br>
+{% endblock %}
+
+{% block errors %}
+{% if form.errors %}
+	<p style="color:red">
+		Incorrect user name and password.
+	</p>
+{% endif %}
+{% endblock %}
+
+{% block contents %}
+<div class="controls" align="center">
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+	<div class ="control-group">
+		<div class="control-label">
+			{{ form.username.label_tag }}
+			{{ form.username }}
+		</div>
+	</div>
+	<br>
+	<div class ="control-group">
+		<div class="control-label">
+			{{ form.password.label_tag }}
+			{{ form.password }}
+		</div>
+	</div>
+	<br>
+	<div class="controls" align="center">
+		<input type="submit" value="Login" />
+		<a href="{% url 'register' %}"> Register</a>
+		<input type="hidden" name="next" value="{{ next }}" />
+		{% csrf_token %}
+	</div>	
+</form>
+</div>
+{% endblock %}

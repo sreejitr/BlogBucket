@@ -1,0 +1,21 @@
+{% extends "blog/base_generic.html" %}
+{% load staticfiles %}
+{% block title %}BlogBucket{% endblock %}
+
+{% block heading %}<h3 align="center">Edit Profile</h3>{% endblock %}
+
+{% block contents %}
+<div align="center">
+<form action="{% url 'editprofile' id %}" method="post">
+<table>
+{{form}}
+</table>
+<br>
+<input type="submit" value="Save Profile">
+{% csrf_token %}
+</form>
+<br>
+</p>
+</div>
+{% endblock %}
+
